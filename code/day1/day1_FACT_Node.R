@@ -412,12 +412,12 @@ tqcs_matched_10_11_full_no_release <- tqcs_matched_10_11_full %>%
   filter(receiver != "release")
 
 ## Detection/Release Map - Static ----
-base <- get_stamenmap(
+base <- get_stadiamap(
   bbox = c(left = min(tqcs_matched_10_11$longitude),
            bottom = min(tqcs_matched_10_11$latitude), 
            right = max(tqcs_matched_10_11$longitude), 
            top = max(tqcs_matched_10_11$latitude)),
-  maptype = "terrain-background", 
+  maptype = "stamen_terrain-background", 
   crop = FALSE,
   zoom = 8)
 
