@@ -34,6 +34,11 @@ install.packages('readxl')
 # GGmap - complimentary to ggplot2, which is in the Tidyverse
 install.packages('ggmap')
 
+#Some lessons require a Stadia Maps API key. You can set up your own if you want, or use the
+#one provided below:
+library(ggmap)
+ggmap::register_stadiamaps("b01d1235-69e8-49ea-b3bd-c35b42424b00")
+
 # Plotly - Interactive web-based data visualization
 install.packages('plotly')
 

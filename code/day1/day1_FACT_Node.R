@@ -8,7 +8,7 @@ library(viridis)
 library(plotly)
 library(ggmap)
 
-setwd('YOUR/PATH/TO/data/fact') #set folder you're going to work in
+setwd('data/fact') #set folder you're going to work in
 getwd() #check working directory
 
 # Intro to R --------
@@ -249,13 +249,12 @@ names(teq_deploy)
 
 
 #make a basemap for your stations, using the min/max deploy lat and longs as bounding box
-
-base <- get_stamenmap(
+base <- get_stadiamap(
   bbox = c(left = min(teq_deploy$DEPLOY_LONG), 
            bottom = min(teq_deploy$DEPLOY_LAT), 
            right = max(teq_deploy$DEPLOY_LONG), 
            top = max(teq_deploy$DEPLOY_LAT)),
-  maptype = "terrain-background", 
+  maptype = "stamen_terrain_background", 
   crop = FALSE,
   zoom = 8)
 
