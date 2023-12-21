@@ -15,89 +15,37 @@ Once all of the programs are installed, open RStudio and run the below package i
 
 <b>Note:</b> When running through the installs, you may encounter a prompt asking you to upgrade dependent packages. Choosing Option `3: None`, works in most situations and will prevent upgrades of packages you weren't explicitly looking to upgrade.
 
-### Beginner R Workshop Requirements
+### R Workshop Requirements
 
 ```r
 
-# Tidyverse (data cleaning and arrangement)
+#Tidyverse (data leaning and arrangement)
 install.packages('tidyverse')
+install.packages('dplyr')
 
 # Lubridate - part of Tidyverse, improves the process of creating date objects
 install.packages('lubridate')
 
+#ggplot2 - common and well-supported package for data visualisation
+install.packages('ggplot2')
+
+# ReadXL - reads Excel format
+install.packages('readxl')
+
 # GGmap - complimentary to ggplot2, which is in the Tidyverse
 install.packages('ggmap')
+
+#Some lessons require a Stadia Maps API key. You can set up your own if you want, or use the
+#one provided below:
+library(ggmap)
+#This is a temporarily available API key you can use for this workshop. You SHOULD NOT rely on this key being available after the workshop.
+ggmap::register_stadiamaps("b01d1235-69e8-49ea-b3bd-c35b42424b00")
 
 # Plotly - Interactive web-based data visualization
 install.packages('plotly')
 
-# ReadXL - reads Excel format
-install.packages("readxl")
-
 # Viridis - color scales in this package are easier to read by those with colorblindness, and print well in grey scale.
-install.packages("viridis")
-```
-
-### Advanced Telemetry Workshop Requirements
-<b>Note:</b> When running through the installs, you may encounter a prompt asking you to upgrade dependent packages. Choosing Option `3: None`, works in most situations and will prevent upgrades of packages you weren't explicitly looking to upgrade.
-
-```r
-
-# rgdal
-install.packages('rgdal')
-library(rgdal)
-rgdal::getGDALVersionInfo()
-
-# Tidyverse (data cleaning and arrangement)
-install.packages('tidyverse')
-
-# glatos - acoustic telemetry package that does filtering, vis, array simulation, etc.
-install.packages('remotes')
-library(remotes) 
-remotes::install_github('ocean-tracking-network/glatos')
-
-#Additional packages for mapping.
-install.packages('stringr')
-install.packages('mapview')
-install.packages('spdplyr')
-
-# Lubridate - part of Tidyverse, improves the process of creating date objects
-install.packages('lubridate')
-
-# GGmap - complimentary to ggplot2, which is in the Tidyverse
-install.packages('ggmap')
-
-#SP and Raster packages for mapping.
-install.packages('sp')
-install.packages('raster')
-
-# Install actel
-library(remotes)
-remotes::install_github("hugomflavio/actel", build_opts = c("--no-resave-data", "--no-manual"), build_vignettes = TRUE)
-
-# Install packages for building/displaying R Markdown
-install.packages('rmarkdown')
-install.packages('knitr', dependencies = TRUE)
-
-# Install additonal packages for `remora` lesson
-install.packages('readr')
-install.packages('sf')
-install.packages('stars')
-
-# Install remora
-install.packages('devtools')
-library(devtools)
-devtools::install_github('ocean-tracking-network/remora@workshop_ready', force=TRUE)
-
-# Install packages for animating detection data
-install.packages('remotes')
-library(remotes) 
-remotes::install_github("jmlondon/pathroutr")
-
-install.packages('plotly')
-install.packages('gganimate')
-install.packages('ggspatial')
-
+install.packages('viridis')  
 
 ```
 
