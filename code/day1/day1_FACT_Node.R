@@ -417,7 +417,7 @@ base <- get_stadiamap(
            bottom = min(tqcs_matched_10_11$latitude), 
            right = max(tqcs_matched_10_11$longitude), 
            top = max(tqcs_matched_10_11$latitude)),
-  maptype = "stamen_terrain-background", 
+  maptype = "stamen_terrain_background", 
   crop = FALSE,
   zoom = 8)
 

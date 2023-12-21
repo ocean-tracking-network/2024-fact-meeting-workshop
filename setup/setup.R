@@ -3,20 +3,10 @@
 ### R version: 3.6.x or newer (recommend 4.0.x) and RStudio.
 ### Windows users: Please also download the Rtools version compatible with your R version https://cran.r-project.org/bin/windows/Rtools/history.html (not for MacOS)
 
-# Advanced Telemetry Workshop ONLY: You must install also GDAL software, which can take a long time. See the extra setup document provided.
-
-#Due to recent issues with certain spatial packages being delisted from CRAN, you will need to install the archived version of rgeos before the package will work. 
-#You can get the most recent archive from https://cran.r-project.org/src/contrib/Archive/rgeos/. 
-#At time of writing, 0.6-4 is the most recent. 
-#You will then need to install the rgeos package. Make sure you change the path in the first line of the script.
-
 # Once R/RStudio is installed: open RStudio and run this install script. Please run it line-by-line instead of all at once in case there are errors.
 
 #Note: When running through the installs, you may encounter a prompt asking you to upgrade dependent packages.
       #Choosing Option `3: None`, works in most situations and will prevent upgrades of packages you weren't explicitly looking to upgrade.
-
-# Install the archived rgeos package: 
-install.packages("YOUR/PATH/TO/rgeos_0.6-4.tar.gz", repos = NULL, type = "source")
 
 #Tidyverse (data leaning and arrangement)
 install.packages('tidyverse')
@@ -37,6 +27,7 @@ install.packages('ggmap')
 #Some lessons require a Stadia Maps API key. You can set up your own if you want, or use the
 #one provided below:
 library(ggmap)
+#This is a temporarily available API key you can use for this workshop. You SHOULD NOT rely on this key being available after the workshop.
 ggmap::register_stadiamaps("b01d1235-69e8-49ea-b3bd-c35b42424b00")
 
 # Plotly - Interactive web-based data visualization
