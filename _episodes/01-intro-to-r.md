@@ -26,10 +26,10 @@ R can access files on and save outputs to any folder on your computer. R knows w
 
 library(tidyverse)# really neat collection of packages! https://www.tidyverse.org/
 library(lubridate)
-library(readxl)
 library(viridis)
+library(ggplot2)
 library(plotly)
-library(ggmap)
+library(ggmap) #note: must have ggmap 4.0.0 to run this workshop
 
 
 # Working Directory ####

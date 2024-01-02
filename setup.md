@@ -8,8 +8,8 @@ You will requre 1) all the correct programs, 2) all the listed R packages 3) the
 
 
 ### Please see the attached document for program instructions: - [Program Install Instructions.docx](/Resources/install_instructions.docx)
--  R version: 3.6.x or newer (recommend 4.0.x) and RStudio
--  Rtools (Windows users only) and GDAL are only required for the Advanced Telemetry Workshop
+-  R version: 3.6.x or newer (recommend 4.0.x) and RStudio are both **mandatory**
+-  Rtools (Windows users only) and GDAL are only required if you decide to continue your learning with any Advanced OTN Telemetry Workshop content.
 
 Once all of the programs are installed, open RStudio and run the below package install scripts. It's best to run it line by line instead of all at once in case there are errors.
 
@@ -19,7 +19,7 @@ Once all of the programs are installed, open RStudio and run the below package i
 
 ```r
 
-#Tidyverse (data leaning and arrangement)
+#Tidyverse - data cleaning and arrangement
 install.packages('tidyverse')
 install.packages('dplyr')
 
@@ -29,11 +29,8 @@ install.packages('lubridate')
 #ggplot2 - common and well-supported package for data visualisation
 install.packages('ggplot2')
 
-# ReadXL - reads Excel format
-install.packages('readxl')
-
-# GGmap - complimentary to ggplot2, which is in the Tidyverse
-install.packages('ggmap')
+# GGmap - complimentary mapping package to ggplot2, which is in the Tidyverse
+install.packages('ggmap') #note: must have ggmap 4.0.0 to run this workshop, please update if needed
 
 #Some lessons require a Stadia Maps API key. You can set up your own if you want, or use the
 #one provided below:
