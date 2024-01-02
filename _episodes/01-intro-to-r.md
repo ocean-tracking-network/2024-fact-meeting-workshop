@@ -34,9 +34,7 @@ library(ggmap)
 
 # Working Directory ####
 
-#Instructors!! since this lesson is mostly base R we're not going to make four copies of it as with the other nodes.
-#Change this one line as befits your audience.
-setwd('YOUR/PATH/TO/data/NODE') #set folder you're going to work in
+setwd('YOUR/PATH/TO/data/FACT') #set folder you're going to work in
 getwd() #check working directory
 
 #you can also change it in the RStudio interface by navigating in the file browser where your working directory should be
