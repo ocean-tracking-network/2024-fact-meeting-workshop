@@ -29,11 +29,8 @@ install.packages('lubridate')
 #ggplot2 - common and well-supported package for data visualisation
 install.packages('ggplot2')
 
-# ReadXL - reads Excel format
-install.packages('readxl')
-
 # GGmap - complimentary mapping package to ggplot2, which is in the Tidyverse
-install.packages('ggmap')
+install.packages('ggmap') #note: must have ggmap 4.0.0 to run this workshop, please update if needed
 
 #Some lessons require a Stadia Maps API key. You can set up your own if you want, or use the
 #one provided below:

@@ -7,6 +7,32 @@ questions:
     - "How do I import all the datasets?"
 ---
 
+### Setting up R
+
+~~~
+# Packages ####
+# once you install packages to your computer, you can "check them out" of your packages library each time you need them
+# make sure you check the "mask" messages that appear - sometimes packages have functions with the same names!
+
+library(tidyverse)# really neat collection of packages! https://www.tidyverse.org/
+library(lubridate)
+library(viridis)
+library(ggplot2)
+library(plotly)
+library(ggmap) #note: must have ggmap 4.0.0 to run this workshop
+
+
+# Working Directory ####
+
+setwd('YOUR/PATH/TO/data/FACT') #set folder you're going to work in
+getwd() #check working directory
+
+#you can also change it in the RStudio interface by navigating in the file browser where your working directory should be
+#(if you can't see the folder you want, choose the three horizonal dots on the right side of the Home bar),
+#and clicking on the blue gear icon "More", and select "Set As Working Directory".
+~~~
+{: .language-r}
+
 ## Importing all the datasets
 Now that we have an idea of what an exploratory workflow might look like with Tidyverse libraries like `dplyr` and `ggplot2`, let's look at how we might implement a common telemetry workflow using these tools. 
 
@@ -23,7 +49,7 @@ View(tqcs_matched_10_11) #already have our Tag matches, from a previous lesson.
 # if you do not have the variable created from a previous lesson, you can use the following code to re-create it:
 
 tqcs_matched_2010 <- read_csv("tqcs_matched_detections_2010.zip", guess_max = 117172) #Import 2010 detections
-tqcs_matched_2011 <- read_csv("tqcs_matched_detections_2011.zip", guess_max = 41881) #Import 2011 detections
+tqcs_matched_2011 <- read_csv("tqcs_matched_detections_2011.zip", guess_max = 87146) #Import 2011 detections
 tqcs_matched_10_11_full <- rbind(tqcs_matched_2010, tqcs_matched_2011) #Now join the two dataframes
 # release records for animals often appear in >1 year, this will remove the duplicates
 tqcs_matched_10_11_full <- tqcs_matched_10_11_full %>% distinct() # Use distinct to remove duplicates. 
