@@ -12,11 +12,11 @@ Now that we have an idea of what an exploratory workflow might look like with Ti
 
 We are going to use OTN-style detection extracts for this lesson. If you're unfamiliar with detection extracts formats from OTN-style database nodes, see the documentation [here](https://members.oceantrack.org/data/otn-detection-extract-documentation-matched-to-animals). 
 
-For the FACT Network you will receive Detection Extracts which include (1) Matched to Animals YYYY, (2) Detections Mapped to Other Trackers - Extended YYYY (also called Qualified Extended) and (3) Unqualified Detections YYYY. In each case, the YYYY in the filename indicates the single year of data contained in the file and "extended" refers to the extra column provided to FACT Network members: "species detected". The types of detection extracts you receive will differ depending on the type of project you have regitered with the Network. If you have both an Array project and a Tag project you will likely need both sets of Detection Extracts.
+For the FACT Network you will receive Detection Extracts which include (1) Matched to Animals YYYY, (2) Detections Mapped to Other Trackers - Extended YYYY (also called Qualified Extended) and (3) Unqualified Detections YYYY. In each case, the YYYY in the filename indicates the single year of data contained in the file and "extended" refers to the extra column provided to FACT Network members: "species detected". The types of detection extracts you receive will differ depending on the type of project you have registered with the Network. If you have both an Array project and a Tag project you will likely need both sets of Detection Extracts.
 
 To illustrate the many meaningful summary reports which can be created use detection extracts, we will import an example of Matched and Qualified extracts.
 
-First, we will comfirm we have our Tag Matches stored in a dataframe.
+First, we will confirm we have our Tag Matches stored in a dataframe.
 ~~~
 View(tqcs_matched_10_11) #already have our Tag matches, from a previous lesson.
 
