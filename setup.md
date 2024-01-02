@@ -19,7 +19,7 @@ Once all of the programs are installed, open RStudio and run the below package i
 
 ```r
 
-#Tidyverse - data leaning and arrangement
+#Tidyverse - data cleaning and arrangement
 install.packages('tidyverse')
 install.packages('dplyr')
 
