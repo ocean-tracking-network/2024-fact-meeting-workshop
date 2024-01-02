@@ -276,7 +276,7 @@ movMap <-
   facet_wrap(~catalognumber)+
   ggtitle("Inferred Animal Paths")
 
-#to size the dots by number of detections you could do something like: size = (log(length(animal)id))?
+#to size the dots by number of detections you could do something like: size = (log(length(animal)id))
 
 movMap
 
