@@ -3,220 +3,25 @@
 # Installs and Setup --------
 library(tidyverse)# really neat collection of packages! https://www.tidyverse.org/
 library(lubridate)
-library(readxl)
 library(viridis)
 library(plotly)
-library(ggmap)
+library(ggmap) #note: must have ggmap 4.0.0 to run this workshop
 
-setwd('data/fact') #set folder you're going to work in
+setwd('File/path/to/data/fact') #please set folder you're going to work in
 getwd() #check working directory
-
-# Intro to R --------
-
-## Operators ----
-
-3 + 5 #maths! including - , *, /
-
-weight_kg <- 55 #assignment operator! for objects/variables. shortcut: alt + -
-weight_kg
-
-weight_lb <- 2.2 * weight_kg #can assign output to an object. can use objects to do calculations
-
-## Functions ----
-
-#functions take "arguments": you have to tell them what to run their script against
-
-ten <- sqrt(weight_kg) #contain calculations wrapped into one command to type.
-#Output of the function can be assigned directly to a variable...
-
-round(3.14159) #... but doesn't have to be.
-
-args(round) #the args() function will show you the required arguments of another function
-
-?round #will show you the full help page for a function, so you can see what it does
-
-
-## Vectors and Data Types ----
-weight_g <- c(21, 34, 39, 54, 55) #use the combine function to join values into a vector object
-
-length(weight_g) #explore vector
-class(weight_g) #a vector can only contain one data type
-str(weight_g) #find the structure of your object.
-
-#our first vector is numeric.
-#other options include: character (words), logical (TRUE or FALSE), integer etc.
-
-animals <- c("mouse", "rat", "dog") #to create a character vector, use quotes
-
-class(weight_g)
-class(animals)
-
-# Note:
-#R will convert (force) all values in a vector to the same data type.
-#for this reason: try to keep one data type in each vector
-#a data table / data frame is just multiple vectors (columns)
-#this is helpful to remember when setting up your field sheets!
-
-## Indexing and Subsetting ----
-
-animals #calling your object will print it out
-animals[2] #square brackets = indexing. selects the 2nd value in your vector
-
-weight_g > 50 #conditional indexing: selects based on criteria
-weight_g[weight_g <=30 | weight_g == 55] #many new operators here!  
-
-# <= less than or equal to; | "or"; == equal to. Also available are >=, greater than or equal to; < and > for less than or greater than (no equals); and & for "and". 
-
-weight_g[weight_g >= 30 & weight_g == 21] #  >=  greater than or equal to, & "and"
-# this particular example give 0 results - why?
-
-## Missing Data ----
-
-heights <- c(2, 4, 4, NA, 6)
-mean(heights) #some functions cant handle NAs
-mean(heights, na.rm = TRUE) #remove the NAs before calculating
-
-heights[!is.na(heights)] #select for values where its NOT NA
-#[] square brackets are the base R way to select a subset of data --> called indexing
-#! is an operator that reverses the function
-
-na.omit(heights) #omit the NAs
-
-heights[complete.cases(heights)] #select only complete cases
-
-# Dataframes and dplyr --------
-## Importing data from CSV ----
-
-#imports file into R. paste the filepath to the file here!
-
-tqcs_matched_2010 <- read_csv("tqcs_matched_detections_2010.zip", guess_max = 117172) #Import 2010 detections
-
-## Exploring Detection Extracts ----
-
-head(tqcs_matched_2010) #first 6 rows
-View(tqcs_matched_2010) #can also click on object in Environment window
-str(tqcs_matched_2010) #can see the type of each column (vector)
-glimpse(tqcs_matched_2010) #similar to str()
-
-#summary() is a base R function that will spit out some quick stats about a vector (column)
-#the $ syntax is the way base R selects columns from a data frame
-
-summary(tqcs_matched_2010$latitude)
-
-## Data Manipulation ----
-
-library(dplyr) #can use tidyverse package dplyr to do exploration on dataframes in a nicer way
-
-# %>% is a "pipe" which allows you to join functions together in sequence.
-
-tqcs_matched_2010 %>% dplyr::select(6) #selects column 6
-
-# Using the above transliteration: "take tqcs_matched_2010 AND THEN select column number 6 from it using the select function in the dplyr library"
-
-tqcs_matched_2010 %>% slice(1:5) #selects rows 1 to 5 in the dplyr way
-# Take tqcs_matched_2010 AND THEN slice rows 1 through 5.
-
-#We can also use multiple pipes.
-tqcs_matched_2010 %>% 
-  distinct(detectedby) %>% nrow #number of arrays that detected my fish in dplyr!
-# Take tqcs_matched_2010 AND THEN select only the unique entries in the detectedby column AND THEN count them with nrow.
-
-#We can do the same as above with other columns too.
-tqcs_matched_2010 %>% 
-  distinct(catalognumber) %>% 
-  nrow #number of animals that were detected 
-# Take tqcs_matched_2010 AND THEN select only the unique entries in the catalognumber column AND THEN count them with nrow.
-
-#We can use filtering to conditionally select rows as well.
-tqcs_matched_2010 %>% filter(catalognumber=="TQCS-1049258-2008-02-14") 
-# Take tqcs_matched_2010 AND THEN select only those rows where catalognumber is equal to the above value.
-
-tqcs_matched_2010 %>% filter(monthcollected >= 10) #all dets in/after October of 2016
-# Take tqcs_matched_2010 AND THEN select only those rows where monthcollected is greater than or equal to 10. 
-
-#get the mean value across a column using GroupBy and Summarize
-
-tqcs_matched_2010 %>% #Take tqcs_matched_2010, AND THEN...
-  group_by(catalognumber) %>%  #Group the data by catalognumber- that is, create a group within the dataframe where each group contains all the rows related to a specific catalognumber. AND THEN...
-  summarise(MeanLat=mean(latitude)) #use summarise to add a new column containing the mean latitude of each group. We named this new column "MeanLat" but you could name it anything
-
-## Joining Detection Extracts ----
-
-tqcs_matched_2011 <- read_csv("tqcs_matched_detections_2011.zip", guess_max = 41881) #Import 2011 detections
-
-tqcs_matched_10_11_full <- rbind(tqcs_matched_2010, tqcs_matched_2011) #Now join the two dataframes
-
-#release records for animals often appear in >1 year, this will remove the duplicates
-tqcs_matched_10_11_full <- tqcs_matched_10_11_full %>% distinct() # Use distinct to remove duplicates. 
-
-tqcs_matched_10_11 <- tqcs_matched_10_11_full %>% slice(1:100000) # subset our example data to help this workshop run smoother!
-
-## Dealing with Datetimes ----
-
-library(lubridate) #Import our Lubridate library. 
-
-tqcs_matched_10_11 %>% mutate(datecollected=ymd_hms(datecollected)) #Use the lubridate function ymd_hms to change the format of the date.
-
-#as.POSIXct(tqcs_matched_10_11$datecollected) #this is the base R way - if you ever see this function
-
-# Intro to Plotting with ggplot2 ----
-
-## Background ----
-
-#While `ggplot2` function calls can look daunting at first, they follow a single formula, detailed below.
-
-
-#Anything within <> braces will be replaced in an actual function call. 
-#ggplot(data = <DATA>, mapping = aes(<MAPPINGS>)) + <GEOM_FUNCTION>
-
-#<DATA> refers to the data that we'll be plotting. 
-
-#<MAPPINGS> refers to the aesthetic mappings for the data- 
-#that is, which columns in the data will be used to determine which attributes of the graph. 
-#For example, if you have columns for latitude and longitude, you may want to map these onto the X and Y axes of the graph. 
-
-#<GEOM_FUNCTION> refers to the style of the plot: what type of plot are we going to make.
-
-library(ggplot2)
-
-tqcs_10_11_plot <- ggplot(data = tqcs_matched_10_11, 
-                          mapping = aes(x = longitude, y = latitude)) #can assign a base
-
-tqcs_10_11_plot + 
-  geom_point(alpha=0.1, 
-             colour = "blue") 
-#This will layer our chosen geom onto our plot template. 
-#alpha is a transparency argument in case points overlap. Try alpha = 0.02 to see how it works!
-
-## Basic Plots ----
-
-#you can combine with dplyr pipes
-
-tqcs_matched_10_11 %>%  
-  ggplot(aes(longitude, latitude)) +
-  geom_point() #geom = the type of plot
-
-
-tqcs_matched_10_11 %>%  
-  ggplot(aes(longitude, latitude, colour = commonname)) + 
-  geom_point()
-#anything you specify in the aes() is applied to the actual data points/whole plot,
-#anything specified in geom() is applied to that layer only (colour, size...). sometimes you have >1 geom layer so this makes more sense!
 
 
 # Creating Summary Reports: Importing --------
 
 ## Tag Matches ----
-View(tqcs_matched_10_11) #already have our Tag matches, from a previous lesson.
 
-# if you do not have the variable created from a previous lesson, you can use the following code to re-create it:
+tqcs_matched_2010 <- read_csv("tqcs_matched_detections_2010.zip", guess_max = 117172) #Import 2010 detections
+tqcs_matched_2011 <- read_csv("tqcs_matched_detections_2011.zip", guess_max = 87146) #Import 2011 detections
+tqcs_matched_10_11_full <- rbind(tqcs_matched_2010, tqcs_matched_2011) #Now join the two dataframes
 
-#tqcs_matched_2010 <- read_csv("tqcs_matched_detections_2010.csv", guess_max = 117172) #Import 2010 detections
-#tqcs_matched_2011 <- read_csv("tqcs_matched_detections_2011.csv", guess_max = 41881) #Import 2011 detections
-#tqcs_matched_10_11_full <- rbind(tqcs_matched_2010, tqcs_matched_2011) #Now join the two dataframes
 # release records for animals often appear in >1 year, this will remove the duplicates
-#tqcs_matched_10_11_full <- tqcs_matched_10_11_full %>% distinct() # Use distinct to remove duplicates. 
-#tqcs_matched_10_11 <- tqcs_matched_10_11_full %>% slice(1:100000) # subset our example data to help this workshop run smoother!
+tqcs_matched_10_11_full <- tqcs_matched_10_11_full %>% distinct() # Use distinct to remove duplicates. 
+tqcs_matched_10_11 <- tqcs_matched_10_11_full %>% slice(1:100000) # subset our example data to help this workshop run smoother!
 
 ## Array Matches ----
 teq_qual_2010 <- read_csv("teq_qualified_detections_2010.zip")

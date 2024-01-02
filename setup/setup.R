@@ -1,7 +1,6 @@
 ## Requirements------
 
 ### R version: 3.6.x or newer (recommend 4.0.x) and RStudio.
-### Windows users: Please also download the Rtools version compatible with your R version https://cran.r-project.org/bin/windows/Rtools/history.html (not for MacOS)
 
 # Once R/RStudio is installed: open RStudio and run this install script. Please run it line-by-line instead of all at once in case there are errors.
 
@@ -18,11 +17,8 @@ install.packages('lubridate')
 #ggplot2 - common and well-supported package for data visualisation
 install.packages('ggplot2')
 
-# ReadXL - reads Excel format
-install.packages('readxl')
-
 # GGmap - complimentary to ggplot2, which is in the Tidyverse
-install.packages('ggmap')
+install.packages('ggmap') #note: must have ggmap 4.0.0 to run this workshop - please update
 
 #Some lessons require a Stadia Maps API key. You can set up your own if you want, or use the
 #one provided below:
