@@ -18,7 +18,7 @@ Git is a common command-line interface used by developers worldwide to share the
 
 Version control is the lab notebook of the digital world: it’s what professionals use to keep track of what they’ve done and to collaborate with other people. Every large software development project relies on it, and most programmers use it for their small jobs as well. And it isn’t just for software: books, papers, small data sets, and anything that changes over time or needs to be shared can and should be stored in a version control system.
 
-Git is the version control software and the coding language. GitHub is the website where Git folders/code can be shared and edited by collaborators.
+Git is the version control software and tool, while GitHub is the website where Git folders/code can be shared and edited by collaborators.
 
 ![PhD Comic](../Resources/phd101212s.png)
 
