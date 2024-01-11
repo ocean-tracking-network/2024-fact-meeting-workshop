@@ -1,16 +1,11 @@
 ---
-title: Discussion
+title: Introduction to Git
 teaching: 15
 exercises: 0
 questions:
-    - "What else do you need to report to your funders?"
+    - "What is Git and why should I use it?"
     - "How can you use Git for code management?"
 ---
-## Other required reporting metrics
-
-In addition to the code provided in the previous lessons, what other metrics are important in your lab?
-- For example, many reports will have a specific reporting window. Are there outstanding questions about selecting only relevant data?
-- Are there additional metrics needed like the number of active stations or number of stations downloaded?
 
 ## Introduction to Git
 
@@ -19,6 +14,9 @@ Git is a common command-line interface used by developers worldwide to share the
 Version control is the lab notebook of the digital world: it’s what professionals use to keep track of what they’ve done and to collaborate with other people. Every large software development project relies on it, and most programmers use it for their small jobs as well. And it isn’t just for software: books, papers, small data sets, and anything that changes over time or needs to be shared can and should be stored in a version control system.
 
 Git is the version control software and tool, while GitHub is the website where Git folders/code can be shared and edited by collaborators.
+
+This lesson is accompanied by [this Powerpoint presentation.](https://docs.google.com/presentation/d/1WmdewmYbiUJMqYreQxPjLQiTKNAeo7cNZPkQ03CJXNs/edit?usp=sharing)
+
 
 ![PhD Comic](../Resources/phd101212s.png)
 
